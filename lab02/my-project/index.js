@@ -4,6 +4,7 @@ console.log("Hello Node.js!")
 const http = require('http')
 // Import Node url module
 const url = require('url')
+const qs = require('querystring')
 
 // Define a string constant concatenating strings
 const content = '<!DOCTYPE html>' +
@@ -18,15 +19,15 @@ const content = '<!DOCTYPE html>' +
 '</html>'
 
 const serverHandle = function (req, res) {
-  // Retrieve and print the current path
-  const path = url.parse(req.url).pathname
-  console.log(path)
+  // Retrieve and print the queryParams
+  const queryParams = qs.parse(url.parse(req.url).query)
+  console.log(queryParams)
 
   // Write a response header
   res.writeHead(200, {'Content-Type': 'text/html'})
 
   //Write a response content
-  res.write(path)
+  res.write(content)
 
   res.end()
 }

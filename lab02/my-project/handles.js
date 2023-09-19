@@ -1,6 +1,10 @@
 const url = require('url');
 const qs = require('querystring');
 
+const fs = require('fs');
+const path = require('path');
+
+
 const content = '<!DOCTYPE html>' +
 '<html><body>'+
     '<h1>Welcome to the Hello App!</h1>'+
@@ -38,6 +42,21 @@ const serverHandle = (req, res) =>{
             res.writeHead(200, { 'Content-Type': 'text/plain' });
             res.end(`Hello, ${name}!`);
         }
+    }else if (route.pathname === '/about'){
+        // route : about
+        const filePath = path.join(__dirname, 'content', 'about.json');
+        fs.readFile(filePath, 'utf8', (err, data) => {
+            if (err) {
+              // If the file doesn't exist, send a 404 response
+              res.writeHead(404, { 'Content-Type': 'text/plain' });
+              res.end('404 Not Found');
+            } else {
+              // If the file exists, send its content as JSON
+              const aboutData = JSON.parse(data);
+              res.writeHead(200, { 'Content-Type': 'application/json' });
+              res.end(JSON.stringify(aboutData, null, 2));
+            }
+        });
     } else {
         // For any other route, reply with a 404 Not Found response
         res.writeHead(404, { 'Content-Type': 'text/plain' });

@@ -1,4 +1,5 @@
 const express = require('express');
+const { v4: uuidv4 } = require('uuid');
 const path = require('path');
 const fs = require('fs');
 const app = express();
@@ -69,14 +70,14 @@ app.get('/articles', (req, res) => {
 });
 
 app.post('/articles', (req, res) => {
-    const { id, title, content, date, author } = req.body;
+    const { title, content, date, author } = req.body;
 
-    if (!id || !title || !content || !date || !author) {
-        return res.status(400).send('All article fields (id, title, content, date, author) are required.');
+    if (!title || !content || !date || !author) {
+        return res.status(400).send('All article fields ( title, content, date, author) are required.');
     }
 
     const newArticle = {
-        id,
+        id: uuidv4(),
         title,
         content,
         date,

@@ -87,8 +87,8 @@ app.post('/articles', (req, res) => {
     res.status(201).json(newArticle);
 });
 
-app.get('/articles/:id', (req, res) => {
-    const article = db.articles.find(a => a.id === req.params.id);
+app.get('/articles/:articleId', (req, res) => {
+    const article = db.articles.find(a => a.id === req.params.articleId);
     if (article) {
         res.status(200).json(article);
     } else {

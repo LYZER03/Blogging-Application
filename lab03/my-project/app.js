@@ -4,6 +4,8 @@ const fs = require('fs');
 const app = express();
 const PORT = 3000;
 
+app.use(express.json());
+
 const content = '<!DOCTYPE html>' +
     '<html><body>' +
     '<h1>Welcome to the Hello App!</h1>' +
@@ -41,10 +43,6 @@ app.get('/about', (req, res) => {
     });
 });
 
-app.use((req, res) => {
-    res.status(404).send('404 Not Found');
-});
-
 const db = {
     articles: [
         {
@@ -65,6 +63,43 @@ const db = {
         }
     ]
 }
+
+app.get('/articles', (req, res) => {
+    res.status(200).json(db.articles);
+});
+
+app.post('/articles', (req, res) => {
+    const { id, title, content, date, author } = req.body;
+
+    if (!id || !title || !content || !date || !author) {
+        return res.status(400).send('All article fields (id, title, content, date, author) are required.');
+    }
+
+    const newArticle = {
+        id,
+        title,
+        content,
+        date,
+        author
+    };
+
+    db.articles.push(newArticle);
+    res.status(201).json(newArticle);
+});
+
+app.get('/articles/:id', (req, res) => {
+    const article = db.articles.find(a => a.id === req.params.id);
+    if (article) {
+        res.status(200).json(article);
+    } else {
+        res.status(404).send('Article not found');
+    }
+});
+
+app.use((req, res) => {
+    res.status(404).send('404 Not Found');
+});
+
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });

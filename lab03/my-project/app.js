@@ -63,13 +63,11 @@ const db = {
             author: 'Bob McLaren'
         }
     ]
-}
-
+};
 // list all articles
 app.get('/articles', (req, res) => {
     res.status(200).json(db.articles);
 });
-
 // add a new article
 app.post('/articles', (req, res) => {
     const { title, content, date, author } = req.body;
@@ -89,7 +87,6 @@ app.post('/articles', (req, res) => {
     db.articles.push(newArticle);
     res.status(201).json(newArticle);
 });
-
 // get an article by ID
 app.get('/articles/:articleId', (req, res) => {
     const article = db.articles.find(a => a.id === req.params.articleId);
@@ -99,21 +96,18 @@ app.get('/articles/:articleId', (req, res) => {
         res.status(404).send('Article not found');
     }
 });
-
 // get all comments of the article with articleId
 app.get('/articles/:articleId/comments', (req, res) => {
     const articleId = req.params.articleId;
     const commentsForArticle = db.comments.filter(comment => comment.articleId === articleId);
     res.json(commentsForArticle);
 });
-
 // add a new comment to a specific article with articleId
 app.post('/articles/:articleId/comments', (req, res) => {
     const articleId = req.params.articleId;
     const { content, author } = req.body;
-
-
     const articleExists = db.articles.some(article => article.id === articleId);
+
     if (!articleExists) {
         return res.status(404).json({ error: 'Article not found' });
     }
@@ -129,12 +123,10 @@ app.post('/articles/:articleId/comments', (req, res) => {
     db.comments.push(newComment);
     res.status(201).json(newComment);
 });
-
 // get a comment with commentId of the article with articleId
 app.get('/articles/:articleId/comments/:commentId', (req, res) => {
     const articleId = req.params.articleId;
     const commentId = req.params.commentId;
-
     const targetComment = db.comments.find(comment => comment.id === commentId && comment.articleId === articleId);
 
     if (!targetComment) {

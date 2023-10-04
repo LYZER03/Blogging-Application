@@ -1,10 +1,8 @@
-
 const request = require('supertest');
 const app = require('../app'); // path to your Express app
 const assert = require('assert');
 
 describe('Article API Endpoints', function () {
-
     // 1. Test fetching all articles
     it('GET /articles - should return all articles', function (done) {
         request(app)
@@ -12,7 +10,6 @@ describe('Article API Endpoints', function () {
             .expect('Content-Type', /json/)
             .expect(200, done);
     });
-
     // 2. Test adding a new article
     it('POST /articles - should add a new article', function (done) {
         request(app)
@@ -26,7 +23,6 @@ describe('Article API Endpoints', function () {
             .expect('Content-Type', /json/)
             .expect(201, done);
     });
-
     // 3. Test fetching an article by its ID
     it('GET /articles/:articleId - should return a specific article', function (done) {
         request(app)
@@ -34,7 +30,6 @@ describe('Article API Endpoints', function () {
             .expect('Content-Type', /json/)
             .expect(200, done);
     });
-
     // 4. Test fetching all comments of a specific article
     it('GET /articles/:articleId/comments - should return all comments of a specific article', function (done) {
         request(app)
@@ -42,7 +37,6 @@ describe('Article API Endpoints', function () {
             .expect('Content-Type', /json/)
             .expect(200, done);
     });
-
     // 5. Test adding a new comment to a specific article
     it('POST /articles/:articleId/comments - should add a new comment', function (done) {
         request(app)
@@ -61,5 +55,4 @@ describe('Article API Endpoints', function () {
             .expect('Content-Type', /json/)
             .expect(200, done);
     });
-
 });

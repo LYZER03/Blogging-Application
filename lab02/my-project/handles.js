@@ -1,9 +1,7 @@
 const url = require('url');
 const qs = require('querystring');
-
 const fs = require('fs');
 const path = require('path');
-
 
 const content = '<!DOCTYPE html>' +
 '<html><body>'+
@@ -13,8 +11,7 @@ const content = '<!DOCTYPE html>' +
         '<li><a href="/hello?name=John">/hello?name=John</a> - Say hello to John</li>'+
         '<li><a href="/hello?name=Alex">/hello?name=Alex</a> - Introduce Yourself</li>'+
     '</ul>'+
-'</body></html>'
-
+'</body></html>';
 
 const serverHandle = (req, res) =>{
     const route = url.parse(req.url);
@@ -25,7 +22,6 @@ const serverHandle = (req, res) =>{
         res.writeHead(200, { 'Content-Type': 'text/html' });
         res.write(content);
         res.end();
-
     } else if (route.pathname === '/hello') {
         // Route: /hello
         const name = params.name;
@@ -41,7 +37,7 @@ const serverHandle = (req, res) =>{
             // For any other 'name', reply with a hello message
             res.writeHead(200, { 'Content-Type': 'text/plain' });
             res.end(`Hello, ${name}!`);
-        }
+        };
     }else if (route.pathname === '/about'){
         // route : about
         const filePath = path.join(__dirname, 'content', 'about.json');
@@ -55,13 +51,13 @@ const serverHandle = (req, res) =>{
               const aboutData = JSON.parse(data);
               res.writeHead(200, { 'Content-Type': 'application/json' });
               res.end(JSON.stringify(aboutData, null, 2));
-            }
+            };
         });
     } else {
         // For any other route, reply with a 404 Not Found response
         res.writeHead(404, { 'Content-Type': 'text/plain' });
         res.end('404 Not Found');
-    }
+    };
 };
 
 module.exports = {

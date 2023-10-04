@@ -9,7 +9,7 @@
     "dev": "nodemon index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Alex DONG Dylan NUNEZ Narcis GEORGE",
   "license": "ISC",
   "dependencies": {
     "nodemon": "^3.0.1"

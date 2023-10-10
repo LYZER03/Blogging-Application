@@ -18,8 +18,8 @@ router.get('/hello', (req, res) => {
 });
 
 //GET /content/about
-router.get('./content/about', (req, res) => {
-    const filePath = path.join(__dirname, 'content', 'about.json');
+router.get('/about', (req, res) => {
+    const filePath = path.join(__dirname, '..','content', 'about.json');
     fs.readFile(filePath, 'utf8', (err, data) => {
         if (err) {
             res.status(404).send('404 Not Found');

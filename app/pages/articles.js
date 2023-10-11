@@ -29,7 +29,7 @@ function ArticlesPage() {
                             <img src={article.imageUrl} alt={`Image of ${article.title}`} className={styles.articleImage} />
                             <h2 className={styles.articleTitle}>{article.title}</h2>
                             <p className={styles.articleSummary}>{article.summary}</p>
-                            <a href='#' className={styles.readMore}>Read More</a>
+                            <a href={`/articles/${article.id}`} className={styles.readMore}>Read More</a>
                         </div>
                     ))}
                 </div>

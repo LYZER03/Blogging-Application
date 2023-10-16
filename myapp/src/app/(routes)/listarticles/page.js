@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import styles from '@/styles/articles.module.css';
 
 function ArticlesPage() {
@@ -25,7 +26,9 @@ function ArticlesPage() {
                         <img src={article.imageUrl} alt={`Image of ${article.title}`} className={styles.articleImage} />
                         <h2 className={styles.articleTitle}>{article.title}</h2>
                         <p className={styles.articleSummary}>{article.summary}</p>
-                        <a href={`/articles/${article.id}`} className={styles.readMore}>Read More</a>
+                        <Link href={`/article/${article.id}`}>
+                            <p className={styles.readMore}>Read More</p>
+                        </Link>
                     </div>
                 ))}
             </div>
@@ -34,3 +37,6 @@ function ArticlesPage() {
 }
 
 export default ArticlesPage;
+
+
+

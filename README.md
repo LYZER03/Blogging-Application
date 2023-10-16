@@ -1,46 +1,38 @@
 ﻿# ECE WEBTech 2023 fall LAB
 
-### Previous functionalities
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-Getting up and ready with Node.js
+## Getting Started
 
-Project and repository initialization
+First, run the development server:
 
-Web server in Node.js
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+```
 
-### Lasted Features 05/10/2023
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-Server-side programming with Node.js
-
-Web server with Express
-
-Practice unit tests and learn about GraphQL
-
-
-### Installation
+## Installation
 
 install application:
 ```
 npm install
 ```
-### Usage
+## Learn More
 
-start a web server with the command:
-```
-npm start
-```
+To learn more about Next.js, take a look at the following resources:
 
-### Develop
-
-start a web server with the command:
-```
-npm run dev
-```
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 ### Authors
 
-#### Student GROUPE 02-10:
+**`Student GROUPE 02-10`** 
 Alex DONG - Dylan NUNEZ - Narcis Georges
 
-#### Tutor:
+**`Tutor`**
 Sergei KUDINOV

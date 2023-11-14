@@ -2,7 +2,7 @@
 import React from 'react'
 import { useState } from 'react'
 
-const contact = () => {
+const pageUseState = () => {
     const [count, setCount] = useState(0);
 
     function handleClick() {
@@ -20,4 +20,4 @@ const contact = () => {
   )
 }
 
-export default contact
+export default pageUseState

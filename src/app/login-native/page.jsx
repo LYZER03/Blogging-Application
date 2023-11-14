@@ -1,7 +1,7 @@
 "use client"
 import React, {useState} from 'react'
 
-const contact = () => {
+const pageLoginNative = () => {
     const [message, setMessage] = useState(null)
     const onSubmit = function(e){
     e.preventDefault()
@@ -23,7 +23,7 @@ const contact = () => {
             </div>
             <div className="mt-10">
                 <label className="mr-5">Password</label>
-                <input className="border-solid border-black border-2 px-2 py-2" type="text" name="password" />
+                <input className="border-solid border-black border-2 px-2 py-2" type="password" name="password" />
             </div>
             <div className="mt-10">
                 <button type="submit" className="px-4 py-2 font-semibold text-sm text-white rounded-full bg-slate-400">Submit</button>
@@ -47,4 +47,4 @@ const contact = () => {
     )
 }
 
-export default contact
+export default pageLoginNative

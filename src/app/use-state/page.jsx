@@ -6,7 +6,6 @@ const pageUseState = () => {
     const [count, setCount] = useState(0);
 
     function handleClick() {
-        console.log(count)
         setCount(count + 1);
     }
 

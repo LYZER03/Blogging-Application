@@ -1,30 +1,9 @@
+'use client'
 import Link from 'next/link'
-import React from 'react'
+import  { React,useContext }  from 'react'
 import OutlineUserCircleIcon from '@heroicons/react/24/outline/UserCircleIcon'
+import UserContext from '../UserContext'
 
-
-async  function getData() {
-  const apiUrl = "http://localhost:3000/api/profile";
-  console.log("Fetching data from:", apiUrl);
-
-  try {
-    const res = await fetch(apiUrl, {
-      cache: "no-store",
-    });
-
-    if (!res.ok) {
-      console.error("Error response:", res.status, res.statusText);
-      throw new Error("Failed to fetch data");
-    }
-
-    const dataProfile = await res.json();
-    console.log("Data fetched successfully:", dataProfile);
-    return dataProfile;
-  } catch (error) {
-    console.error("Error while fetching data:", error);
-    throw error;
-  }
-}
 
 const links = [
   {
@@ -49,8 +28,9 @@ const links = [
   }
 ];
 
-const Navbar = async () => {
-  const dataProfile = await getData();
+const Navbar =
+ () => {
+   const {profile, login, logout}  = useContext(UserContext)
   return (
     <div className="h-16 flex justify-between items-center">
       <Link className="font-bold text-2xl" href='/'>
@@ -63,11 +43,27 @@ const Navbar = async () => {
           </Link>
         ))}
       </div>
-      <div>
-          <OutlineUserCircleIcon />
-          <span className="float-right">{dataProfile.userName}</span>
-      </div>
+      { profile && (
+          <div className="rounded py-1 px-2 text-slate-600 border border-cyan-700 hover:bg-cyan-500 hover:text-slate-50">
+            <Link href="/profile" className="flex gap-2 [&_svg]:h-6 [&_svg]:w-6">  
+              <OutlineUserCircleIcon />
+              {profile.userName}
+            </Link>
+          </div>
+        )}
+        <div className="py-1 px-2 text-slate-800 hover:text-slate-500">
+          { profile ?
+            <button onClick= {() => logout()} className="flex gap-2 [&_svg]:h-6 [&_svg]:w-6">
+              Sign out
+            </button>
+            :
+            <button onClick={() => login()} className="flex gap-2 [&_svg]:h-6 [&_svg]:w-6">
+              Sign in
+            </button>
+          }
+        </div>
     </div>
+
   );
 };
 

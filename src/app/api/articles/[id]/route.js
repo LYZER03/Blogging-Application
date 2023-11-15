@@ -6,7 +6,6 @@ export const GET = async (request, { params }) => {
  
   // Find the article with the matching ID
   const article = mockData.find((item) => item.id === Number(id));
-  console.log(article)
 
   if (!article) {
     return new NextResponse("Article not found", { status: 404 });

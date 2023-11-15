@@ -4,7 +4,6 @@ import Image from 'next/image';
 
 async function getData() {
   const apiUrl = "http://localhost:3000/api/articles";
-  console.log("Fetching data from:", apiUrl);
 
   try {
     const res = await fetch(apiUrl, {

@@ -1,13 +1,9 @@
-
 'use client'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
-import { useRouter } from 'next/navigation'
 import { Auth } from '@supabase/auth-ui-react'
 import { ThemeSupa } from '@supabase/auth-ui-shared'
-
 export default function Login() {
 
-    const router = useRouter()
     const supabase = createClientComponentClient()
 
     return (
@@ -17,7 +13,9 @@ export default function Login() {
         </h1>
           <Auth supabaseClient={supabase}
           appearance={{ theme: ThemeSupa }}
-          providers={['github']} />
+          providers={['github']}
+          redirectTo={`http://localhost:3000/auth/callback`}
+           />
       </div>
     )
   }

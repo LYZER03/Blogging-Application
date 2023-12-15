@@ -11,15 +11,12 @@ async function getData() {
     });
 
     if (!res.ok) {
-      console.error("Error response:", res.status, res.statusText);
       throw new Error("Failed to fetch data");
     }
 
     const data = await res.json();
-    console.log("Data fetched successfully:", data);
     return data;
   } catch (error) {
-    console.error("Error while fetching data:", error);
     throw error;
   }
 }

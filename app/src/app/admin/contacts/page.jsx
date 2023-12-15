@@ -14,14 +14,12 @@ const contacts = () => {
     useEffect(() => {
       const getData = async () => {
         const { data } = await supabase.from('contacts').select()
-        console.log('data',data)
         setContacts(data)
       }
   
       getData()
     }, [])
     
-     console.log('contacts',contacts)
   return (
     <div>
       <h1 className='wt-title'>

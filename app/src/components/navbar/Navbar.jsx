@@ -30,7 +30,9 @@ const links = [
 
 const Navbar =
  () => {
-   const {profile, login, logout}  = useContext(UserContext)
+  const {session} = useContext(UserContext)
+  const user = session?.user
+  console.log('user',user)
   return (
     <div className="h-16 flex justify-between items-center">
       <Link className="font-bold text-2xl" href='/'>
@@ -43,24 +45,27 @@ const Navbar =
           </Link>
         ))}
       </div>
-      { profile && (
+      {user && (
           <div className="rounded py-1 px-2 text-slate-600 border border-cyan-700 hover:bg-cyan-500 hover:text-slate-50">
-            <Link href="/profile" className="flex gap-2 [&_svg]:h-6 [&_svg]:w-6">  
+            <Link href="/profile" className="flex gap-2 [&_svg]:h-6 [&_svg]:w-6">
+            {user.user_metadata.user_name}
               <OutlineUserCircleIcon />
-              {profile.userName}
             </Link>
           </div>
         )}
         <div className="py-1 px-2 text-slate-800 hover:text-slate-500">
-          { profile ?
-            <button onClick= {() => logout()} className="flex gap-2 [&_svg]:h-6 [&_svg]:w-6">
-              Sign out
+          <form method="post">
+          {user ?
+          
+            <button className="flex gap-2 [&_svg]:h-6 [&_svg]:w-6" formAction="/auth/signout">
+              Sing out
             </button>
             :
-            <button onClick={() => login()} className="flex gap-2 [&_svg]:h-6 [&_svg]:w-6">
-              Sign in
+            <button className="flex gap-2 [&_svg]:h-6 [&_svg]:w-6">
+              Sing in
             </button>
           }
+          </form>
         </div>
     </div>
 

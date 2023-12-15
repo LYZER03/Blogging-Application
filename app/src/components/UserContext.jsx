@@ -1,38 +1,21 @@
-'use client'
+'use client';
 import {createContext, useState, useEffect} from 'react'
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+
 
 const Context = createContext()
 
 export default Context
 
 const ContextProvider = ({
-  children
+  children,
+  session
 }) =>  {
-  const [profile, setProfile] = useState(null)
-  const fetchData = async () =>{
-    const response = await fetch('http://localhost:3000/api/profile')
-    return await response.json()
-  }
-  useEffect(() => {
-    const fetchProfile = async () => {
-      const profile = await fetchData()
-      setProfile(profile)
-    }
-    fetchProfile()
-  }, [])
-  
+  const supabase = createClientComponentClient()
+
   return (
     <Context.Provider
-        value={{
-        profile: profile,
-        login: async () => {
-          const profile = await fetchData()
-          setProfile(profile)
-        },
-        logout: () => {
-          setProfile(null)
-        }
-      }}  
+        value={{ supabase, session }}
     >
       {children}
     </Context.Provider>

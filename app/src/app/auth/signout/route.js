@@ -5,7 +5,6 @@ import { NextResponse } from 'next/server'
 export async function POST(req) {
   const cookieStore = cookies()
   const supabase = createRouteHandlerClient({ cookies: () => cookieStore })
-    console.log('req signout')
   // Check if we have a session
   const {
     data: { session },

@@ -14,7 +14,7 @@ export default function Login() {
           <Auth supabaseClient={supabase}
           appearance={{ theme: ThemeSupa }}
           providers={['github']}
-          redirectTo={`http://localhost:3000/auth/callback`}
+          redirectTo={`${process.env.NEXT_PUBLIC_VERCEL_URL}/auth/callback`}
            />
       </div>
     )

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 async function getData() {
-  const apiUrl = "http://localhost:3000/api/articles";
+  const apiUrl = `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/articles/`;
 
   try {
     const res = await fetch(apiUrl, {

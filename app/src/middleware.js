@@ -8,10 +8,20 @@ export async function middleware(req) {
     data: { user },
   } = await supabase.auth.getUser()
 
-  
+  console.log('user')
+  // if user is signed in and the current path is /login redirect the user to /profile
+  if (user && req.nextUrl.pathname === '/login') {
+    return NextResponse.redirect(new URL('/profile', req.url))
+  }
+
+  // if user is not signed in and the current path is  /profile redirect the user to /login
+  if (!user && req.nextUrl.pathname === '/profile') {
+    return NextResponse.redirect(new URL('/login', req.url))
+  }
+
   return res
 }
 
 export const config = {
-  matcher: ['/', '/profile'],
-}
+  matcher: ['/login','/profile'],
+};

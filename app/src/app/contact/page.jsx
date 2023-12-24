@@ -1,59 +1,56 @@
-'use client'
+"use client"
 import Image from 'next/image'
-import  React from 'react'
+import React from 'react'
 import { useFormState, useFormStatus} from 'react-dom' 
 import { createContact } from '@/app/actions'
 
-
 const initialState = {
-  msgResponse: null,
+ msgResponse: null,
 }
 
 function SubmitButton() {
-  const { pending } = useFormStatus()
+ const { pending } = useFormStatus()
  
-  return (
+ return (
     <button className="px-4 py-2 cursor-pointer bg-green-800 rounded-lg max-w-max text-white">
       Send
     </button>
-  )
+ )
 }
 
-const contact = () => {
-  const [state, formAction] = useFormState(createContact, initialState)
-  return (
-    <div>
-      <h1 className="text-5xl mb-16 text-center gap-11">Let's Keep in Touch</h1>
-      <div className="flex items-center gap-16">
-        <div className="flex-1 h-80 relative overflow-hidden">
+const ContactForm = () => {
+ const [state, formAction] = useFormState(createContact, initialState)
+
+ return (
+    <div className="container mx-auto">
+      <h1 className="text-5xl mb-24 text-center">Let's Keep in Touch</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="relative overflow-hidden rounded-lg">
           <Image
-            src ="/images/book.jpg" 
+            src="/images/book.jpg" 
             alt="contact illustration" 
             layout='fill' 
             objectFit="cover"
           />
         </div>
-        <form className="flex-1 flex flex-col gap-5" action={formAction}>
-          <input type='text' name='name' placeholder='name' className="p-5 bg-transparent border-3 border-black text-black text-xl font-bold" required/>
-          <input type='text' name='email' placeholder='email'className="p-5 bg-transparent border-3 border-black text-black text-xl font-bold" required/>
-          <textarea
-            name='message'
-            className="p-5 bg-transparent border-3 border-black text-black text-xl font-bold"
-            placeholder='message'
-            cols={30}
-            rows={10}
-            required
-          >
-          </textarea>
-          <SubmitButton />  
-          <p aria-live="polite" className="text-black text-lg	">
-           {state?.msgResponse}
-          </p>   
+        <form className="bg-white rounded-lg shadow-lg p-8" action={formAction}>
+          <div className="mb-6">
+            <label htmlFor="name" className="block mb-2 text-sm font-bold text-gray-700">Name</label>
+            <input type='text' name='name' id='name' placeholder='Your Name' className="w-full p-3 text-gray-600 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600" required/>
+          </div>
+          <div className="mb-6">
+            <label htmlFor="email" className="block mb-2 text-sm font-bold text-gray-700">Email</label>
+            <input type='text' name='email' id='email' placeholder='Your Email' className="w-full p-3 text-gray-600 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600" required/>
+          </div>
+          <div className="mb-6">
+            <label htmlFor="message" className="block mb-2 text-sm font-bold text-gray-700">Message</label>
+            <textarea name='message' id='message' rows='5' placeholder='Your Message' className="w-full p-3 text-gray-600 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600" required></textarea>
+          </div>
+          <SubmitButton />
         </form>
       </div>
-     
     </div>
-  )
+ )
 }
 
-export default contact
+export default ContactForm

@@ -23,15 +23,17 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>  
-      <div className="container mx-auto min-h-screen p-4 sm:p-6 lg:p-8 flex flex-col justify-between">
-        <ContextProvider session={session}>
-           <SupabaseListener serverAccessToken={session?.access_token} />
+      <div className="">
+          <ContextProvider session={session}>
+            <SupabaseListener serverAccessToken={session?.access_token} />
             <Navbar/>
             {children}
-            <Footer/>
-         </ContextProvider>
-         </div>   
+          </ContextProvider>
+          <Footer/>
+        </div>   
       </body>
     </html>
   )
 }
+
+

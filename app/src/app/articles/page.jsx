@@ -24,30 +24,32 @@ async function getData() {
 const articles = async () => {
   const data = await getData();
   return (
-    <div>
-      {data.map((item) => (
-        <Link 
-          href={`/articles/${item.id}`}
-          className="flex items-center gap-12 mb-12" 
-          key={item.id} 
-        >
-          <div>
-            <Image
-              src={item.img}
-              alt=""
-              width={250}
-              height={250}
-              objectFit="cover"
-            />
-          </div>
-          <div>
-            <h1 className="text-4xl">{item.title}</h1>
-            <p className="text-base text-gray-600" >{item.desc}</p>
-          </div>
-        </Link>
-      ))}
-    </div>
+     <div className="container mx-auto px-4 py-16">
+       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+         {data.map((item) => (
+           <Link 
+             href={`/articles/${item.id}`}
+             className="bg-white rounded-lg overflow-hidden shadow-md transform hover:scale-105 transition duration-300 ease-in-out"
+             key={item.id} 
+           >
+             <div className="relative h-64">
+               <Image
+                 src={item.img}
+                 alt=""
+                 layout="fill"
+                 objectFit="cover"
+                 className="rounded-lg"
+               />
+             </div>
+             <div className="p-4">
+               <h1 className="text-xl font-semibold mb-2">{item.title}</h1>
+               <p className="text-gray-600">{item.desc}</p>
+             </div>
+           </Link>
+         ))}
+       </div>
+     </div>
   );
-};
-
-export default articles;
+ }
+ 
+ export default articles;

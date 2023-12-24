@@ -33,17 +33,13 @@ const links = [
 
 const Navbar =
  () => {
-   var userName = null
-  const {session} = useContext(UserContext)
 
-  if(session?.user){
-    if(session.user.app_metadata.provider == 'github' ){
-      userName = session.user.user_metadata.user_name
-    }
-    else{
-      userName= session.user.email
-    }
-  }
+   const { session } = useContext(UserContext);
+   const userName =
+     session?.user?.app_metadata.provider === 'github'
+       ? session.user.user_metadata.user_name
+       : session?.user?.email ?? null
+       
   return (
     <div className="h-16 flex justify-between items-center">
       <Link className="font-bold text-2xl" href='/'>

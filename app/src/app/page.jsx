@@ -12,7 +12,7 @@ export default function Home() {
             This is a space where professionals go to find meaningful ideas and discussions. Here's what we're exploring now.
           </p>
           <button className="px-4 py-2 cursor-pointer bg-white hover:bg-gray-500 rounded-lg text-black">
-            <Link href="/topics">Discover our topics</Link>
+            <Link href="/articles">Discover our articles</Link>
           </button>
         </div>
       </div>

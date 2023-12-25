@@ -5,6 +5,7 @@ import {ContextProvider} from '../components/UserContext';
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 import SupabaseListener from '../components/supabase-listener';
+import Providers from '@/components/Providers';
 
  export const metadata = {
   title: 'Create Next App',
@@ -15,25 +16,23 @@ export default async function RootLayout({ children }) {
 
   const cookieStore = cookies()
   const supabase = createServerComponentClient({ cookies: () => cookieStore })
-
-  const {
-    data: { session },
-  } = await supabase.auth.getSession()
-
+ 
+  const {data: { session },} = await supabase.auth.getSession()
+ 
   return (
-    <html lang="en">
-      <body>  
-      <div className="">
-          <ContextProvider session={session}>
-            <SupabaseListener serverAccessToken={session?.access_token} />
-            <Navbar/>
-            {children}
-          </ContextProvider>
-          <Footer/>
-        </div>   
-      </body>
-    </html>
+     <html lang="en">
+       <body>
+         <Providers>
+            <ContextProvider session={session}>
+              <SupabaseListener serverAccessToken={session?.access_token} />
+              <Navbar/>
+              {children}
+              <Footer/>
+            </ContextProvider>
+         </Providers> 
+       </body>
+     </html>
   )
-}
+ }
 
 

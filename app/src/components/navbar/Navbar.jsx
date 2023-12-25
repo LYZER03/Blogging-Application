@@ -1,30 +1,33 @@
 'use client'
 import Link from 'next/link'
-import  { React,useContext }  from 'react'
+import { React,useContext, useEffect } from 'react'
 import OutlineUserCircleIcon from '@heroicons/react/24/outline/UserCircleIcon'
 import UserContext from '../UserContext'
 import { useState } from 'react'
 import Image from "next/image";
 import logo_blog from "/public/images/logo_blog.png"
 import { Search } from 'lucide-react'
+import { Sun } from 'lucide-react'
+import { Moon } from 'lucide-react'
+import { useTheme } from 'next-themes'
 
 const links = [
-  {
+ {
     id:1,
     title:"Home",
     url:"/"
-  },
-  {
+ },
+ {
     id:2,
     title:"articles",
     url:"/articles"
-  },
-  {
+ },
+ {
     id:3,
     title:"about",
     url:"/about"
-  },
-  {
+ },
+ {
     id:4,
     title:"contact",
     url:"/contact"
@@ -32,7 +35,6 @@ const links = [
 ];
 
 const Navbar = () => {
-
   const { session } = useContext(UserContext);
   const userName =
     session?.user?.app_metadata.provider === 'github'
@@ -40,6 +42,17 @@ const Navbar = () => {
       : session?.user?.email ?? null
 
   const [searchBoxVisibility, setSearchBoxVisibility] = useState(false)
+
+  const [mounted, setMounted] = useState(false)
+  const {theme, setTheme } = useTheme();
+
+  useEffect(() =>{
+    setMounted(true);
+  }, [])
+
+  if (!mounted){
+    return null
+  }
 
   return (
     <nav className="z-10 sticky top-0 flex items-center justify-between w-full px-5vw py-5 h-[80px] border-b border-gray-300 bg-white">
@@ -62,6 +75,14 @@ const Navbar = () => {
         >
           <Search/>
         </button>
+
+
+        {theme === "dark" ? (
+          <Sun className="rounded-full bg-gray-500" cursor="pointer" onClick={() => setTheme('light')}/>
+        ) : (
+          <Moon className="rounded-full bg-gray-500" cursor="pointer" onClick={() => setTheme('dark')}/>
+        )}
+
 
         {links.map((link) => (
           <Link key={link.id} href={link.url}>

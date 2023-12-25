@@ -2,12 +2,12 @@
 
 import { useRouter } from 'next/navigation';
 import { useEffect,useContext } from 'react';
-import UserContext from './UserContext'
+import { useUser }  from './UserContext'
 
 export default function SupabaseListener({
   serverAccessToken
 }) {
-  const {supabase} = useContext(UserContext)
+  const {supabase} = useUser()
   const router = useRouter()
   useEffect(() => {
     const {

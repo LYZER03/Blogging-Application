@@ -1,8 +1,8 @@
 'use client'
 import Link from 'next/link'
-import { React,useContext, useEffect } from 'react'
+import { React, useEffect } from 'react'
 import OutlineUserCircleIcon from '@heroicons/react/24/outline/UserCircleIcon'
-import UserContext from '../UserContext'
+import { useUser } from '../UserContext'
 import { useState } from 'react'
 import Image from "next/image";
 import logo_blog from "/public/images/logo_blog.png"
@@ -35,11 +35,12 @@ const links = [
 ];
 
 const Navbar = () => {
-  const { session } = useContext(UserContext);
-  const userName =
-    session?.user?.app_metadata.provider === 'github'
-      ? session.user.user_metadata.user_name
-      : session?.user?.email ?? null
+  const { user } = useUser()
+  const profileName = user
+  ? user.username && user.username.trim() !== ''
+    ? user.username
+    : user.email
+  : null;
 
   const [searchBoxVisibility, setSearchBoxVisibility] = useState(false)
 
@@ -90,17 +91,17 @@ const Navbar = () => {
           </Link>
         ))}
 
-        {userName && (
+        {profileName&& (
           <div className="rounded py-1 px-2 text-slate-600 border border-cyan-700 hover:bg-cyan-500 hover:text-slate-50">
             <Link href="/profile" className="flex gap-2 [&_svg]:h-6 [&_svg]:w-6">
-            {userName}
+            {profileName}
               <OutlineUserCircleIcon />
             </Link>
           </div>
         )}
         <div className="whitespace-nowrap bg-black text-white rounded-full py-3 px-6 text-xl capitalize hover:bg-opacity-80">
           <form method="post">
-          {userName ?
+          {profileName ?
           
             <button className="flex gap-2 [&_svg]:h-6 [&_svg]:w-6" formAction="/auth/signout">
               Sing out

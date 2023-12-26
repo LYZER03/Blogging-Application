@@ -32,27 +32,77 @@ npm install
 
 ## Info for developers (Later this info will be removed)
 
-Apply npm run dev inside app folder, to start next js developer environment
+### Environment Variables Setup
 
-In supabase folder, apply this command to start supabase environment :
+- **App Folder**: Define `env.local` in the `app` folder.
+- **Project Root**: Set up `.env` at the root of the project.
+
+Before you begin, ensure that Supabase CLI is installed on your computer. If it's not installed yet, please follow the instructions provided in the Supabase documentation. For Linux users, refer to this link:
+
+[Getting Started with Supabase CLI](https://supabase.com/docs/guides/cli/getting-started?platform=linux)
+
+## Setting Up the Local Environment
+
+### Step 1: Start Supabase
+
+Open your terminal and execute the following command to start the local Supabase environment:
+
 ```
-docker compose -f ./docker-compose.yml -f ./dev/docker-compose.dev.yml up
+supabase start
 ```
 
-Then , enter this credential test :
-- **`Username`**: supabase
-- **`Password`**: this_password_is_insecure_and_should_be_updated
+### Step 2: Apply Database Migrations
 
-Access to supabase studio, with this route : **`http://localhost:8000/`**
 
-Follow ,step 4 for this page to set github oauth : **https://github.com/adaltas/ece-webtech-2023-fall/blob/master/modules/09.oauth/lab.md**
+Next, set up your database schema by applying migrations. Run the following command:
 
-Inside .env file in supabase folder , fill this data:
+```
+supabase migration up
+```
 
-- GOTRUE_EXTERNAL_GITHUB_CLIENT_ID
-- GOTRUE_EXTERNAL_GITHUB_SECRET
-- GOTRUE_EXTERNAL_GITHUB_ENABLED
-- GOTRUE_EXTERNAL_GITHUB_REDIRECT_URI
+This will apply the necessary database migrations to configure your local database schema.
+
+### Step 3: Configure Storage in Supabase Studio
+
+Finally, you'll need to set up a storage bucket for article images:
+
+1. Open Supabase Studio in your web browser by navigating to [http://localhost:54323/](http://localhost:54323/).
+2. In Supabase Studio, go to the "Storage" section.
+3. Create a new storage bucket named `article-images`.
+4. Set the access level of this bucket to 'public' to allow public access to the images stored in it.
+
+
+# Project Setup Guide
+
+This README provides a step-by-step guide to set up your local environment using Supabase. Follow these instructions to get started.
+
+## Prerequisites
+
+Before you begin, ensure that Supabase CLI is installed on your computer. If it's not installed yet, please follow the instructions provided in the Supabase documentation. For Linux users, refer to this link:
+
+[Getting Started with Supabase CLI](https://supabase.com/docs/guides/cli/getting-started?platform=linux)
+
+## Setting Up the Local Environment
+
+### Step 1: Start Supabase
+
+Open your terminal and execute the following command to start the local Supabase environment:
+
+```
+supabase start
+```
+
+This command initializes the Supabase services required for your local development.
+
+
+Step 2: Apply Database Migrations
+Next, set up your database schema by applying migrations. Run the following command::
+
+```
+supabase start
+```
+
+
 
 ### Authors
 

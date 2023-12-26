@@ -13,7 +13,7 @@ export default  function Login() {
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-white">
           <div className="mb-6 text-2xl font-bold text-center text-gray-800">
-            Your Login Title
+            Welcome Back
           </div>
 
           <Auth supabaseClient={supabase}

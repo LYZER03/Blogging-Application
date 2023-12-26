@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useUser } from '../../components/UserContext'
 import Link from 'next/link';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import { useTheme } from 'next-themes'
 
 const supabase = createClientComponentClient()
 
@@ -47,8 +48,19 @@ const articles = () => {
     return content.split(" ").slice(0, wordLimit).join(" ") + "...";
   };
 
+  const [mounted, setMounted] = useState(false)
+  const {theme, setTheme } = useTheme();
+
+  useEffect(() =>{
+    setMounted(true);
+  }, [])
+
+  if (!mounted){
+    return null
+  }
+
   return (
-     <div className="container mx-auto px-4 py-20">
+     <div className="container mx-auto px-4 py-20 min-h-screen">
        {user && ( 
           <div className="mb-4">
             <Link href="/articles/create" legacyBehavior>
@@ -60,29 +72,31 @@ const articles = () => {
         )}
        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
          {articles.map((item) => (
-           <Link 
-             href={`/articles/${item.id}`}
-             className="bg-white rounded-lg overflow-hidden shadow-md transform hover:scale-105 transition duration-300 ease-in-out"
-             key={item.id} 
-           >
-             <div className="relative h-64">
-                <img
-                  src={item.image_url}
-                  alt={item.title}
-                  className="w-full h-full object-cover rounded-lg"
-                />
-            </div>
-             <div className="p-4">
-               <h1 className="text-xl font-semibold mb-2">{item.title}</h1>
-               <p className="text-gray-600">
-                  By {item.author_name} on {new Date(item.created_at).toLocaleDateString('en-US')}
-                </p>
-               <p className="text-gray-600"> {truncateContent(item.content, 20)}</p>
-             </div>
-           </Link>
-         ))}
-       </div>
-     </div>
+          <Link 
+              href={`/articles/${item.id}`}
+              className={`rounded-lg overflow-hidden shadow-md transform hover:scale-105 transition duration-300 ease-in-out ${
+              theme === 'dark' ? 'bg-black text-white' : 'bg-white text-black'
+              }`}
+              key={item.id} 
+          >
+          <div className="relative h-64">
+            <img
+              src={item.image_url}
+              alt={item.title}
+              className="w-full h-full object-cover rounded-lg"
+            />
+          </div>
+          <div className="p-4">
+            <h1 className="text-xl font-semibold mb-2">{item.title}</h1>
+            <p className="text-gray-600">
+              By {item.author_name} on {new Date(item.created_at).toLocaleDateString('en-US')}
+            </p>
+            <p className="text-gray-600"> {truncateContent(item.content, 20)}</p>
+          </div>
+          </Link>
+        ))}
+      </div>
+    </div>
   );
  }
  

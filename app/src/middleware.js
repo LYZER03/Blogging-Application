@@ -12,14 +12,15 @@ export async function middleware(req) {
    
    const protectedRoutes = ['/profile', '/articles/create'];
 
-   // // if user is not signed in and the current path is  protected route
-   if (protectedRoutes.includes(req.nextUrl.pathname) && !user) {
-    return NextResponse.redirect(new URL('/login', req.url))
-   }
 
   
-  // if user is not signed in and the current path is  /profile redirect the user to /login
-  if (!user && req.nextUrl.pathname === '/profile') {
+  // if user is signed in and the current path is /login redirect the user to /profile
+  if (user && req.nextUrl.pathname === '/login') {
+    return NextResponse.redirect(new URL('/profile', req.url))
+  }
+
+  // if user is not signed in and the current path is  protected route
+  if (protectedRoutes.includes(req.nextUrl.pathname) && !user) {
     return NextResponse.redirect(new URL('/login', req.url))
   }
 

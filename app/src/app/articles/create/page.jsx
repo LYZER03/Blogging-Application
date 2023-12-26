@@ -1,7 +1,7 @@
 
 'use client'
 import { useUser } from '../../../components/UserContext'
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import ArticleForm from '../../../components/Form/Article';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
@@ -13,12 +13,18 @@ export default function CreateArticlePage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter()
 
+  useEffect(() => {
+    if (!user) {
+      // Si no hay usuario autenticado, redirigir a la página de inicio de sesión
+      router.push('/login');
+    }
+  }, [user, router]);
+
   const handleSubmit = async (formData) => {
     setIsSubmitting(true);
    
     const author_id = user?.id
-    console.log('author id',user)
-    console.log('data Form',formData)
+
     try {
        
       let image_url = '';
@@ -29,9 +35,7 @@ export default function CreateArticlePage() {
           .from('article-images') 
           .upload(fileName, formData.image)
         const {fullPath} = image
-        console.log('data path',fullPath)
         if (uploadError) {
-          console.log(uploadError)
           throw new Error('Error to upload image');
         }
   
@@ -39,8 +43,7 @@ export default function CreateArticlePage() {
          image_url = data.publicUrl
       }
   
-      console.log('data to insert ',formData)
-      console.log('authorId',author_id)
+
       const { data, error } = await supabase.from('articles').insert(
         { 
           title: formData.title, 
@@ -51,7 +54,6 @@ export default function CreateArticlePage() {
         }
       ).select();
 
-      console.log('Data Inserted',data)
   
       if (error) throw error;
   

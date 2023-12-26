@@ -162,7 +162,9 @@ Finally, you'll need to set up a storage bucket for article images:
   * Comments: A theme provider was implemented in the layout, and libraries for sun and moon were imported, which provide the styles for the website's theme.
   * Task feedback: The task required research for development, and we also had to conduct a website review to ensure that the theme was being applied to all components.
 
-## Feedback about the course
+## Miscellaneous
+
+### Course Feedback
 
 In general, we believe the classes provide a highly practical introduction to application development. The course content is sequential, which facilitates our learning progress as students. What we enjoyed the most was the integration of Supabase with Next.js, as this platform simplifies the management of various processes when creating a complete web page, such as authentication, user creation, and image storage.
 

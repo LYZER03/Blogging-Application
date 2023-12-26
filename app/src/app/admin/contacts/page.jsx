@@ -21,7 +21,7 @@ const contacts = () => {
     }, [])
     
   return (
-    <div>
+    <div className="min-h-screen">
       <h1 className='wt-title'>
         List of contact messages
       </h1>

@@ -19,7 +19,7 @@ const Contact = ({ params }) => {
     }, [])
 
   return (
-    <div>
+    <div className="min-h-screen">
        <h1 className='wt-title'>
         View a contact message
       </h1>

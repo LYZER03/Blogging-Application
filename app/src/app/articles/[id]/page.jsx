@@ -56,7 +56,7 @@ export default function ArticlePage({ params }) {
   });
 
   return (
-    <div className="bg-gray-100 p-5 font-sans">
+    <div className="min-h-screen bg-gray-100 p-5 font-sans">
       <div className="block lg:flex lg:items-center lg:justify-between">
         {article.image_url && (
           <div className="relative h-72 lg:w-1/2 mb-6 lg:mb-0">

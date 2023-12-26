@@ -60,7 +60,7 @@ const articles = () => {
   }
 
   return (
-     <div className="container mx-auto px-4 py-20">
+     <div className="container mx-auto px-4 py-20 min-h-screen">
        {user && ( 
           <div className="mb-4">
             <Link href="/articles/create" legacyBehavior>
@@ -74,7 +74,7 @@ const articles = () => {
          {articles.map((item) => (
           <Link 
               href={`/articles/${item.id}`}
-              className={`bg-white rounded-lg overflow-hidden shadow-md transform hover:scale-105 transition duration-300 ease-in-out ${
+              className={`rounded-lg overflow-hidden shadow-md transform hover:scale-105 transition duration-300 ease-in-out ${
               theme === 'dark' ? 'bg-black text-white' : 'bg-white text-black'
               }`}
               key={item.id} 

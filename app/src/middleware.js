@@ -8,12 +8,16 @@ export async function middleware(req) {
     data: { user },
   } = await supabase.auth.getUser()
 
-  
-  // if user is signed in and the current path is /login redirect the user to /profile
-  if (user && req.nextUrl.pathname === '/login') {
-    return NextResponse.redirect(new URL('/profile', req.url))
-  }
 
+   
+   const protectedRoutes = ['/profile', '/articles/create'];
+
+   // // if user is not signed in and the current path is  protected route
+   if (protectedRoutes.includes(req.nextUrl.pathname) && !user) {
+    return NextResponse.redirect(new URL('/login', req.url))
+   }
+
+  
   // if user is not signed in and the current path is  /profile redirect the user to /login
   if (!user && req.nextUrl.pathname === '/profile') {
     return NextResponse.redirect(new URL('/login', req.url))
@@ -23,5 +27,5 @@ export async function middleware(req) {
 }
 
 export const config = {
-  matcher: ['/login','/profile'],
+  matcher: ['/login','/profile','/articles/create'],
 };

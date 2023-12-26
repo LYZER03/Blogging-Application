@@ -12,7 +12,7 @@ export default function AccountForm({ session }) {
   
   
   const { user } = useUser();
-  console.log('user',user)
+
 
   useEffect(() => {
     if (user) {
@@ -34,7 +34,6 @@ export default function AccountForm({ session }) {
       if (error) throw error
       alert('Profile updated!')
     } catch (error) {
-      console.log(error)
       alert('Error updating the data!')
     } finally {
       setLoading(false)

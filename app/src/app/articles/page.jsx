@@ -1,49 +1,83 @@
-import React from 'react'
+'use client'
+import { useEffect, useState } from 'react';
+import { useUser } from '../../components/UserContext'
 import Link from 'next/link';
-import Image from 'next/image';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 
-async function getData() {
-  const apiUrl = `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/articles/`;
+const supabase = createClientComponentClient()
 
-  try {
-    const res = await fetch(apiUrl, {
-      cache: "no-store",
-    });
+const articles = () => {
+  const [articles, setArticles] = useState([])
+  const { user } = useUser()
+  const getData = async () => {
+    try {
+      let { data, error, status } = await supabase
+        .from('articles')
+        .select('*,profiles (full_name)') 
 
-    if (!res.ok) {
-      throw new Error("Failed to fetch data");
+      if (error && status !== 406) {
+        throw error;
+      }
+
+      if (data) {
+        return data.map(article => ({
+          ...article,
+          author_name: article.profiles.full_name 
+        }));
+      }
+    } catch (error) {
+      console.error('Error fetching articles:', error);
+    }
+  };
+
+  useEffect(() => {
+    async function loadArticles() {
+      try {
+        const data = await getData()
+        setArticles(data)
+      } catch (error) {
+        console.error('Error fetching articles:', error)
+      }
     }
 
-    const data = await res.json();
-    return data;
-  } catch (error) {
-    throw error;
-  }
-}
+    loadArticles()
+  }, [])
 
-const articles = async () => {
-  const data = await getData();
+  const truncateContent = (content, wordLimit) => {
+    return content.split(" ").slice(0, wordLimit).join(" ") + "...";
+  };
+
   return (
-     <div className="container mx-auto px-4 py-16">
+     <div className="container mx-auto px-4 py-20">
+       {user && ( 
+          <div className="mb-4">
+            <Link href="/articles/create" legacyBehavior>
+              <a className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 transition duration-300">
+                Create a new article
+              </a>
+            </Link>
+          </div>
+        )}
        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-         {data.map((item) => (
+         {articles.map((item) => (
            <Link 
              href={`/articles/${item.id}`}
              className="bg-white rounded-lg overflow-hidden shadow-md transform hover:scale-105 transition duration-300 ease-in-out"
              key={item.id} 
            >
              <div className="relative h-64">
-               <Image
-                 src={item.img}
-                 alt=""
-                 layout="fill"
-                 objectFit="cover"
-                 className="rounded-lg"
-               />
-             </div>
+                <img
+                  src={item.image_url}
+                  alt={item.title}
+                  className="w-full h-full object-cover rounded-lg"
+                />
+            </div>
              <div className="p-4">
                <h1 className="text-xl font-semibold mb-2">{item.title}</h1>
-               <p className="text-gray-600">{item.desc}</p>
+               <p className="text-gray-600">
+                  By {item.author_name} on {new Date(item.created_at).toLocaleDateString('en-US')}
+                </p>
+               <p className="text-gray-600"> {truncateContent(item.content, 20)}</p>
              </div>
            </Link>
          ))}

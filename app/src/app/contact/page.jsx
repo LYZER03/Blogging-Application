@@ -22,8 +22,8 @@ const ContactForm = () => {
  const [state, formAction] = useFormState(createContact, initialState)
 
  return (
-    <div className="container mx-auto">
-      <h1 className="text-5xl mb-24 text-center">Let's Keep in Touch</h1>
+    <div className="container mx-auto min-h-screen">
+      <h1 className="text-5xl mb-24 text-center pt-12">Let's Keep in Touch</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="relative overflow-hidden rounded-lg">
           <Image

@@ -57,7 +57,7 @@ Inside .env file in supabase folder , fill this data:
 ### Authors
 
 **`Student GROUPE 02-10`** 
-Alex DONG - Dylan NUNEZ - Narcis Georges
+Alex DONG - Dylan NUNEZ - Narcis GEORGE
 
 **`Tutor`**
 Sergei KUDINOV

@@ -1,4 +1,4 @@
-﻿# ECE WEBTech 2023 fall LAB
+﻿# Blogging application - ECE Webtech project
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
@@ -30,7 +30,7 @@ install application:
 npm install
 ```
 
-## Info for developers (Later this info will be removed)
+##  Project Setup Guide
 
 ### Environment Variables Setup
 
@@ -70,44 +70,101 @@ Finally, you'll need to set up a storage bucket for article images:
 2. In Supabase Studio, go to the "Storage" section.
 3. Create a new storage bucket named `article-images`.
 4. Set the access level of this bucket to 'public' to allow public access to the images stored in it.
+*introduction, pre-requisites, installation, usage...*
+
+## Deliverables 
+
+- Vercel URL: [https://ece-webtech-2023-fall-gr02-10.vercel.app/]
+- Supabase project URL: [https://supabase.com/dashboard/project/weuylrycnjjrpmyljfnu]
+
+## Authors
+
+- Alex DONG group 02-10
+- Dylan NUNEZ group 02-10
+- Narcis GEORGE group 02-10 
+
+## Evaluation
+
+### Mandatory Tasks
 
 
-# Project Setup Guide
+* **Naming convention**
+  * Grade: 2 points
+  * Comments: We name variables following the CamelCase convention and provide them with meaningful names to help us remember their purpose and utility
+  * Task feedback: The task wasn't very difficult; we just had to be mindful of adhering to the CamelCase rule and assigning purpose to the variables we used.
+* **Project structure**
+  * Grade: 2 points
+  * Comments: For this project, we utilized the app router paradigm in Next.js to leverage the latest Next.js features. Components were organized into their respective folders, and pages were generated based on these folders.
+  * Task feedback: The task wasn't difficult, we followed the documentation to guide us on how to create folders and files according to the app router.
+* **Git usage**
+  * Grade: 2 points
+  * Comments: We used Conventional Commit when assigning titles to our commits.
+  * Task feedback: No, it wasn't difficult. Through what we learned in class and the online documentation, we were able to apply Conventional Commit.
+* **Code quality**
+  * Grade: 4 points
+  * Comments: In this task, we maintained proper indentation and syntax when declaring functions. We created a context provider to pass information to components, and we developed components that could be reused throughout the app.
+  * Task feedback: This task was a bit challenging because as we progressed, we realized that we could refactor the code, and we made subsequent modifications.
+* **Design, UX, and content**
+  * Grade: 3 points
+  * Comments: For this task, we utilized the website provided by the instructors to implement the placement of components on the website. Regarding the components, for buttons in particular, we aimed to maintain consistency in the component format (size, font, color).
+  * Task feedback: It was somewhat challenging because it required maintaining consistency across different parts of the page in terms of styles.
 
-This README provides a step-by-step guide to set up your local environment using Supabase. Follow these instructions to get started.
+* **Home page**
+  * Grade: 2 points
+  * Comments: We created a main page that displays a banner with a call to action button, leading users to view the articles.
+  * Task feedback: It was somewhat challenging because it required maintaining consistency across different parts of the page in terms of styles.
+* **Navigation**
+  * Grade: 2 points
+  * Comments: We implemented a navigation bar that includes the main pages of interest on the website, along with the account icon.
+  * Task feedback: Initially, it was challenging, but then we decided to implement the navigation bar as a component, as explained in class, and it became easier.
+* **Login and profile page**
+  * Grade: 4 points
+  * Comments: We implemented an authentication system with GitHub, and we also provided the option for email login. The username information appears in the header after logging in. If the username is empty, the user's email is displayed instead.
+  * Task feedback: Completing this task was quite challenging, and the support from the classes was essential to accomplish it. The teacher explained the basic steps for integrating GitHub authentication with Supabase.
+* **Post creation and display**
+  * Grade: 4 points
+  * Comments: We enabled post creation on the articles page. A button to create posts is displayed, and it's visible to authenticated users. Posts can be created with the following fields: Title, content, category, and image.
+  * Task feedback: The task had a moderate level of difficulty as it required synchronizing post creation with a database table to store articles. Additionally, creating a bucket to store post images added complexity to the task.
+* **Comment creation and display**
+  * Grade: 0 points
+  * Comments: The task could not be completed.
+  * Task feedback: Comments were supposed to be linked to the created post articles.
+* **Post modification and removal**
+  * Grade: 0 points
+  * Comments: The task could not be completed.
+  * Task feedback: The option to edit the post was supposed to be enabled for the user who had created it.
+* **Search**
+  * Grade: 2 points
+  * Comments: The search bar was visually created, but it does not incorporate the functionality to search for articles.
+  * Task feedback: We should research how to incorporate the functionality for searching articles
+* **Use an external API**
+  * Grade: 0 points
+  * Comments: External APIs were not called.
+  * Task feedback: The task was not completed.
+* **Resource access control**
+  * Grade: 3 points
+  * Comments: Through triggers, we were able to synchronize user creation with a table called "profile," where user information is managed. These triggers also synchronize user updates and deletions between both tables. Users only have access to their own profile information.
+  * Task feedback: The task had a moderate level of difficulty, as we needed to consult documentation to implement the aforementioned triggers.
+* **Account settings**
+  * Grade: 4 points
+  * Comments: The user has the ability to edit their account information on their profile page.
+  * Task feedback: The implementation of the "profiles" table was necessary to store user information, which is then updated on the profile page.
+* **WYSIWYG integration**
+  * Grade: 0 points
+  * Comments: The task could not be completed.
+  * Task feedback: We should research how to implement the WYSIWYG (What You See Is What You Get) editor because this was not mentioned in previous classes.
+* **Gravatar integration**
+  * Grade: 0 points
+  * Comments: The task could not be completed.
+  * Task feedback: We should research how to implement Gravatar.
+* **Light/dark mode**
+  * Grade: 2 points
+  * Comments: A theme provider was implemented in the layout, and libraries for sun and moon were imported, which provide the styles for the website's theme.
+  * Task feedback: The task required research for development, and we also had to conduct a website review to ensure that the theme was being applied to all components.
 
-## Prerequisites
+## Feedback about the course
 
-Before you begin, ensure that Supabase CLI is installed on your computer. If it's not installed yet, please follow the instructions provided in the Supabase documentation. For Linux users, refer to this link:
+In general, we believe the classes provide a highly practical introduction to application development. The course content is sequential, which facilitates our learning progress as students. What we enjoyed the most was the integration of Supabase with Next.js, as this platform simplifies the management of various processes when creating a complete web page, such as authentication, user creation, and image storage.
 
-[Getting Started with Supabase CLI](https://supabase.com/docs/guides/cli/getting-started?platform=linux)
+We believe it's important for students to have a minimum level of web programming knowledge in HTML, CSS, and JS before taking this course. Some topics, like Tailwind, React.js, or web page rendering, are covered more superficially, and individuals without prior knowledge might feel overwhelmed trying to keep up with the class pace.
 
-## Setting Up the Local Environment
-
-### Step 1: Start Supabase
-
-Open your terminal and execute the following command to start the local Supabase environment:
-
-```
-supabase start
-```
-
-This command initializes the Supabase services required for your local development.
-
-
-Step 2: Apply Database Migrations
-Next, set up your database schema by applying migrations. Run the following command::
-
-```
-supabase start
-```
-
-
-
-### Authors
-
-**`Student GROUPE 02-10`** 
-Alex DONG - Dylan NUNEZ - Narcis GEORGE
-
-**`Tutor`**
-Sergei KUDINOV

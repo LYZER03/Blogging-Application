@@ -11,15 +11,16 @@ export default  function Login() {
     const supabase = createClientComponentClient()
     
     return (
-      <div>
-        <h1 className='wt-title'>
-          Sign in
-        </h1>
+        <div className="flex flex-col items-center justify-center min-h-screen bg-white">
+          <div className="mb-6 text-2xl font-bold text-center text-gray-800">
+            Your Login Title
+          </div>
+
           <Auth supabaseClient={supabase}
           appearance={{ theme: ThemeSupa }}
           providers={['github']}
           redirectTo={`${process.env.NEXT_PUBLIC_VERCEL_URL}/auth/callback`}
-           />
-      </div>
+          />
+        </div>
     )
   }

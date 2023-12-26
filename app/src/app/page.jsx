@@ -5,7 +5,7 @@ export default function Home() {
     <div className="min-h-screen flex items-center bg-cover bg-no-repeat bg-center text-white" style={{ backgroundImage: 'url("/images/nebula.jpg")' }}>
       <div className="flex flex-col items-center justify-center p-10 w-full">
         <div className="text-center">
-          <h1 className="text-5xl font-bold bg-gradient-to-b from-white to-white bg-clip-text text-transparent">
+          <h1 className="text-5xl font-bold bg-white bg-clip-text text-transparent">
             Welcome to The Next Era of Learning.
           </h1>
           <p className="text-lg font-bold max-w-lg mb-4 text-black">

@@ -56,18 +56,18 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="z-10 sticky top-0 flex items-center justify-between w-full px-5vw py-5 h-[80px] border-b border-gray-300 bg-white">
+    <nav className={`z-10 sticky top-0 flex items-center justify-between w-full px-5vw py-5 h-[80px] ${theme === "dark" ? "bg-black text-white" : "bg-white text-black"}`}>
       <Link href='/'>
         <Image src={logo_blog} alt='logo' className='flex-none w-20'/>
       </Link>
 
-      <div className={'absolute bg-white w-full left-0 top-full mt-0 border-b border-gray-200 py-4 px-[5vw] md:border-0 md:block md:relative md:inset-0 md:p-0 md:w-auto md:opacity-100 pointer-events-auto ' + (searchBoxVisibility?"opacity-100 pointer-events-auto":"opacity-0 pointer-events-none duration-100")}>
+      <div className={`absolute w-full left-0 top-full mt-0 py-4 px-[5vw] md:border-0 md:block md:relative md:inset-0 md:p-0 md:w-auto md:opacity-100 pointer-events-auto ${theme === "dark" ? "bg-dark-gray text-white" : "bg-white text-black"} ` + (searchBoxVisibility?"opacity-100 pointer-events-auto":"opacity-0 pointer-events-none duration-100")}>
         <input
           type="text"
           placeholder="Search"
           className="w-full md:w-auto bg-gray-200 p-4 pl-6 pr-12 md:pr-6 rounded-full placeholder:text-gray-600 md:pl-12"
         />
-        <Search className='absolute right-[10%] md:pointer-events-none md:left-5 top-1/2 -translate-y-1/2 text-dark-grey'/>
+        <Search className='absolute right-[10%] md:pointer-events-none md:left-5 top-1/2 -translate-y-1/2 text-black'/>
       </div>
 
       <div className='flex items-center gap-3 md:gap-6 ml-auto px-[3vw]'>
@@ -79,14 +79,14 @@ const Navbar = () => {
 
 
         {theme === "dark" ? (
-          <Sun className="rounded-full bg-gray-500" cursor="pointer" onClick={() => setTheme('light')}/>
+          <Sun className={`rounded-full ${theme === "dark" ? "bg-white text-black" : "bg-black text-white"}`} cursor="pointer" onClick={() => setTheme('light')}/>
         ) : (
-          <Moon className="rounded-full bg-gray-500" cursor="pointer" onClick={() => setTheme('dark')}/>
+          <Moon className={`rounded-full ${theme === "dark" ? "bg-white text-black" : "bg-black text-white"}`} onClick={() => setTheme('dark')}/>
         )}
 
 
         {links.map((link) => (
-          <Link key={link.id} href={link.url}>
+          <Link  key={link.id} href={link.url}>
             {link.title}
           </Link>
         ))}
@@ -99,11 +99,11 @@ const Navbar = () => {
             </Link>
           </div>
         )}
-        <div className="whitespace-nowrap bg-black text-white rounded-full py-3 px-6 text-xl capitalize hover:bg-opacity-80">
+        <div className={`whitespace-nowrap rounded-full py-3 px-6 text-xl capitalize hover:bg-opacity-80 ${theme === "dark" ? "bg-white text-black" : "bg-black text-white"}`}>
           <form method="post">
           {profileName ?
           
-            <button className="flex gap-2 [&_svg]:h-6 [&_svg]:w-6" formAction="/auth/signout">
+          <button className={`flex gap-2 [&_svg]:h-6 [&_svg]:w-6 ${theme === "dark" ? "bg-white text-black" : "bg-black text-white"}`} formAction="/auth/signout">
               Sing out
             </button>
             :

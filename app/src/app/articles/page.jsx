@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useUser } from '../../components/UserContext'
 import Link from 'next/link';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import { useTheme } from 'next-themes'
 
 const supabase = createClientComponentClient()
 
@@ -46,6 +47,17 @@ const articles = () => {
   const truncateContent = (content, wordLimit) => {
     return content.split(" ").slice(0, wordLimit).join(" ") + "...";
   };
+
+  const [mounted, setMounted] = useState(false)
+  const {theme, setTheme } = useTheme();
+
+  useEffect(() =>{
+    setMounted(true);
+  }, [])
+
+  if (!mounted){
+    return null
+  }
 
   return (
      <div className="container mx-auto px-4 py-20">

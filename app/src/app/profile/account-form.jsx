@@ -2,6 +2,7 @@
 import { useCallback, useEffect, useState} from 'react'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useUser }  from '../../components/UserContext'
+import { useTheme } from 'next-themes'
 
 export default function AccountForm({ session }) {
   const supabase = createClientComponentClient()
@@ -38,6 +39,17 @@ export default function AccountForm({ session }) {
     } finally {
       setLoading(false)
     }
+  }
+
+  const [mounted, setMounted] = useState(false)
+  const {theme, setTheme } = useTheme();
+
+  useEffect(() =>{
+    setMounted(true);
+  }, [])
+
+  if (!mounted){
+    return null
   }
   
     return (

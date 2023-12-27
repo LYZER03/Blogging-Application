@@ -53,20 +53,20 @@ export default function AccountForm({ session }) {
   }
   
     return (
-      <div className={`mx-auto max-w-xl px-4 py-24 sm:px-6 xlg:px-8 min-h-screen ${theme === 'dark' ? ' text-white' : 'text-black'}`}>
+      <div className="mx-auto max-w-xl px-4 py-24 sm:px-6 xlg:px-8 min-h-screen">
         <div className="space-y-12">
-          <div className="pb-12">
-            <h2 className="text-base font-semibold leading-7 text-gray-900">Profile</h2>
-            <p className="mt-1 text-sm leading-6 text-gray-600">Welcome {username || user?.email }.</p>
-            <p className="mt-1 text-sm leading-6 text-gray-600">This is your profile, update your info if required.</p>
+          <div className={`pb-12 ${theme === 'dark' ? ' text-white' : 'text-black'}`}>
+            <h2 className="text-base font-semibold leading-7 ">Profile</h2>
+            <p className="mt-1 text-sm leading-6 ">Welcome {username || user?.email }.</p>
+            <p className="mt-1 text-sm leading-6 ">This is your profile, update your info if required.</p>
             <div className="mt-10 grid grid-cols-1 gap-x-6">
               <div className="mb-6">
-                <label className="block text-sm font-medium leading-6 text-gray-900"  htmlFor="email">Email</label>
-                <span className="flex select-none items-center pl-3 font-bold  text-gray-700 text-sm">{user?.email} </span>
+                <label className="block text-sm font-medium leading-6 "  htmlFor="email">Email</label>
+                <span className="flex select-none items-center pl-3 font-bold  text-sm">{user?.email} </span>
               </div>
 
               <div className="mb-6">
-                <label htmlFor="name" className="block mb-2 text-sm font-bold text-gray-700">Full name</label>
+                <label htmlFor="name" className="block mb-2 text-sm font-bold">Full name</label>
                 <input type='text'
                         name='fullName' 
                         id='full-name'
@@ -75,13 +75,13 @@ export default function AccountForm({ session }) {
                         className="w-full p-3 text-gray-600 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600"/>
               </div>
               <div className="mb-6">
-                  <label htmlFor="user-name" className="block mb-2 text-sm font-bold text-gray-700">Username</label>
+                  <label htmlFor="user-name" className="block mb-2 text-sm font-bold">Username</label>
                   <input type='text'
                         name='user-name' 
                         id='username' 
                         value={username || ''}
                         onChange={(e) => setUsername(e.target.value)}
-                        className="w-full p-3 text-gray-600 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600"/>
+                        className="w-full p-3  border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600"/>
               </div>
               <div className="mt-6 flex items-center col-span-1 justify-end gap-x-6">
               <button 

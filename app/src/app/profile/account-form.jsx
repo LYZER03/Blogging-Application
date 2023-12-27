@@ -41,7 +41,7 @@ export default function AccountForm({ session }) {
   }
   
     return (
-      <div className="mx-auto max-w-xl px-4 py-24 sm:px-6 xlg:px-8 min-h-screen">
+      <div className={`mx-auto max-w-xl px-4 py-24 sm:px-6 xlg:px-8 min-h-screen ${theme === 'dark' ? 'bg-black text-white' : 'bg-white text-black'}`}>
         <div className="space-y-12">
           <div className="pb-12">
             <h2 className="text-base font-semibold leading-7 text-gray-900">Profile</h2>

@@ -2,6 +2,8 @@
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+![Blog App](https://i.ibb.co/RYDFkGc/Blogging-Application.png)
+
 ## Getting Started
 
 First, run the development server:
@@ -34,8 +36,17 @@ npm install
 
 ### Environment Variables Setup
 
-- **App Folder**: Define `env.local` in the `app` folder.
+- **App Folder**: Define `env.local` in the `project root/app` folder.
+```
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+NEXT_PUBLIC_VERCEL_URL=
+```
 - **Project Root**: Set up `.env` at the root of the project.
+```
+SUPABASE_AUTH_EXTERNAL_GITHUB_CLIENT_ID=
+SUPABASE_AUTH_EXTERNAL_GITHUB_SECRET=
+```
 
 Before you begin, ensure that Supabase CLI is installed on your computer. If it's not installed yet, please follow the instructions provided in the Supabase documentation. For Linux users, refer to this link:
 

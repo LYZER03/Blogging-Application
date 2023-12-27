@@ -2,6 +2,7 @@
 import { useCallback, useEffect, useState} from 'react'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useUser }  from '../../components/UserContext'
+import { useTheme } from 'next-themes'
 
 export default function AccountForm({ session }) {
   const supabase = createClientComponentClient()
@@ -40,9 +41,19 @@ export default function AccountForm({ session }) {
     }
   }
 
+  const [mounted, setMounted] = useState(false)
+  const {theme, setTheme } = useTheme();
+
+  useEffect(() =>{
+    setMounted(true);
+  }, [])
+
+  if (!mounted){
+    return null
+  }
   
     return (
-      <div className="mx-auto max-w-xl px-4 py-24 sm:px-6 xlg:px-8 min-h-screen ">
+      <div className={`mx-auto max-w-xl px-4 py-24 sm:px-6 xlg:px-8 min-h-screen ${theme === 'dark' ? ' text-white' : 'text-black'}`}>
         <div className="space-y-12">
           <div className="pb-12">
             <h2 className="text-base font-semibold leading-7 text-gray-900">Profile</h2>

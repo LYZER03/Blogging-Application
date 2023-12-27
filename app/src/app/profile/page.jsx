@@ -2,6 +2,7 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 import AccountForm from './account-form'
+import { useTheme } from 'next-themes'
 
 export default async function Profile() {
   const cookieStore = cookies()
@@ -11,6 +12,18 @@ export default async function Profile() {
     data: { session },
   } = await supabase.auth.getSession()
 
-  return <AccountForm session={session} />
+  
+  const [mounted, setMounted] = useState(false)
+  const {theme, setTheme } = useTheme();
+
+  useEffect(() =>{
+    setMounted(true);
+  }, [])
+
+  if (!mounted){
+    return null
+  }
+
+  return <AccountForm className={`${theme === 'dark' ? ' text-white' : 'text-black'}`} session={session} />
   
 }

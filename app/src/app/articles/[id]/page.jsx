@@ -3,6 +3,8 @@ import { useRouter ,usePathname} from 'next/navigation'
 import { useState, useEffect } from 'react'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import Image from 'next/image';
+import articles from '../page';
+
 
 export default function ArticlePage({ params }) {
   const router = useRouter();
@@ -10,9 +12,37 @@ export default function ArticlePage({ params }) {
   const {id} = params
   const [article, setArticle] = useState(null)
   const [loading, setLoading] = useState(true)
-
+  const [isAuthor, setIsAuthor] = useState(false);
   
+  useEffect(() => {
+    const checkAuthor = async () => {
+      // Vérifiez si l'utilisateur actuellement authentifié est l'auteur de l'article
+      const {data: {session}} = await supabase.auth.getSession();
+      const user = session.user
 
+      if (user && article) {
+        const authorId = article.author_id;
+        // Vérifiez si l'auteur de l'article est l'utilisateur actuellement authentifié
+        if (authorId === user.id) {
+          setIsAuthor(true);
+        }
+      }
+    };
+
+    checkAuthor();
+  }, [article]);
+
+  const handleDelete = async () => {
+    if (window.confirm("Are you sure you want to delete this article?")) {
+      const { error } = await supabase.from('articles').delete().eq('id', id);
+
+      if (error) {
+        console.error('Error deleting the article', error);
+      } else {
+        router.push('/articles');
+      }
+    }
+  };
 
   const fetchArticle = async (articleId) => {
     if (!articleId) return
@@ -39,8 +69,6 @@ export default function ArticlePage({ params }) {
     return article.image_url
   }
 
- 
-
   if (loading) {
     return <div>Loading...</div>
   }
@@ -54,6 +82,7 @@ export default function ArticlePage({ params }) {
     month: 'long',
     day: 'numeric'
   });
+
 
   return (
     <div className="min-h-screen bg-gray-100 p-5 font-sans">
@@ -79,6 +108,12 @@ export default function ArticlePage({ params }) {
       <div className="text-lg text-gray-700 leading-relaxed">
         <p>{article.content}</p>
       </div>
+      {isAuthor && (
+        <button onClick={handleDelete} className="bg-red-500 text-white px-4 py-2 rounded mt-4">
+          Delete Article
+        </button>
+      )}
+
     </div>
   )
 }

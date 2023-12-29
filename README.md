@@ -81,7 +81,6 @@ Finally, you'll need to set up a storage bucket for article images:
 2. In Supabase Studio, go to the "Storage" section.
 3. Create a new storage bucket named `article-images`.
 4. Set the access level of this bucket to 'public' to allow public access to the images stored in it.
-*introduction, pre-requisites, installation, usage...*
 
 ## Deliverables 
 

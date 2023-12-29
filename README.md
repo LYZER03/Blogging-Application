@@ -142,7 +142,7 @@ Finally, you'll need to set up a storage bucket for article images:
   * Task feedback: Comments were supposed to be linked to the created post articles.
 * **Post modification and removal**
   * Grade: 4 points
-  * Comments: We added a check to see if the logged-in user is the author of the displayed article. Based on this check, I conditionally showed buttons for deleting and editing the article. The delete functionality uses Supabase to delete the article upon user confirmation. The edit functionality redirects the user to an article editing page with the article ID in the URL.
+  * Comments: We added a check to see if the logged-in user is the author of the displayed article. Based on this check, we conditionally showed buttons for deleting and editing the article. The delete functionality uses Supabase to delete the article upon user confirmation. The edit functionality redirects the user to an article editing page with the article ID in the URL.
   * Task feedback: The task was clear and relevant, involving common actions in article management. It required knowledge of React, Next.js, and Supabase integration, making it moderately challenging. Overall, it provided a practical exercise for improving skills in building interactive web applications
 * **Search**
   * Grade: 2 points

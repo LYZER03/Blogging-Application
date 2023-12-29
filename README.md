@@ -1,4 +1,5 @@
-﻿# Blogging application - ECE Webtech project
+﻿<div style="text-align: justify">
+# Blogging application - ECE Webtech project
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
@@ -140,9 +141,9 @@ Finally, you'll need to set up a storage bucket for article images:
   * Comments: The task could not be completed.
   * Task feedback: Comments were supposed to be linked to the created post articles.
 * **Post modification and removal**
-  * Grade: 0 points
-  * Comments: The task could not be completed.
-  * Task feedback: The option to edit the post was supposed to be enabled for the user who had created it.
+  * Grade: 4 points
+  * Comments: We added a check to see if the logged-in user is the author of the displayed article. Based on this check, I conditionally showed buttons for deleting and editing the article. The delete functionality uses Supabase to delete the article upon user confirmation. The edit functionality redirects the user to an article editing page with the article ID in the URL.
+  * Task feedback: The task was clear and relevant, involving common actions in article management. It required knowledge of React, Next.js, and Supabase integration, making it moderately challenging. Overall, it provided a practical exercise for improving skills in building interactive web applications
 * **Search**
   * Grade: 2 points
   * Comments: The search bar was visually created, but it does not incorporate the functionality to search for articles.
@@ -180,3 +181,4 @@ In general, we believe the classes provide a highly practical introduction to ap
 
 We believe it's important for students to have a minimum level of web programming knowledge in HTML, CSS, and JS before taking this course. Some topics, like Tailwind, React.js, or web page rendering, are covered more superficially, and individuals without prior knowledge might feel overwhelmed trying to keep up with the class pace.
 
+</div>

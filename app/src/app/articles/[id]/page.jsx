@@ -103,6 +103,13 @@ export default function ArticlePage({ params }) {
       console.error('Error updating the article', error);
     } else {
       setEditing(false);
+      // Réinitialisez les champs du formulaire
+      setEditedArticle({
+        title: '',
+        content: '',
+        newImage: null,
+        category: '',
+      });
       // Rechargez l'article après la mise à jour
       fetchArticle(id);
     }
